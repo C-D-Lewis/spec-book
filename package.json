@@ -1,0 +1,24 @@
+{
+  "name": "lunettes",
+  "version": "1.0.0",
+  "description": "Minimalistic OpenAPI spec viewer.",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js --mode production",
+    "build-dev": "webpack --config webpack.config.js --mode development",
+    "serve": "python -m SimpleHTTPServer",
+    "start": "npm run build && npm run serve"
+  },
+  "keywords": [],
+  "author": "Chris Lewis",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.6"
+  }
+}
