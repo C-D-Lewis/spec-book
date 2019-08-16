@@ -10,7 +10,7 @@ const SpecInput = ({ value, onChange }) => {
     width: '60%',
   };
 
-  return <input type="text" value={value} style={style}/>;
+  return <input type="text" value={value} style={style} onChange={e => onChange(e.target.value)}/>;
 };
 
 export default SpecInput;
