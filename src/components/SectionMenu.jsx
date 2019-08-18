@@ -1,5 +1,6 @@
 import React from 'react';
 import Fader from './Fader.jsx';
+import FlexContainer from './FlexContainer.jsx';
 import Theme from '../theme';
 
 const SectionItem = (item) => {
@@ -12,15 +13,18 @@ const SectionItem = (item) => {
 
 const SectionMenu = ({ children, sections }) => {
   const style = {
-    display: 'flex',
     flexDirection: 'column',
     width: 200,
+    height: '100%',
     backgroundColor: Theme.navbarBackgroundColor,
+    borderRight: '1px solid black',
   };
 
   return (
     <Fader>
-      <div style={style}>{sections.map(SectionItem)}</div>
+      <FlexContainer restyle={style}>
+        {sections.map(SectionItem)}
+      </FlexContainer>
     </Fader>
   );
 };

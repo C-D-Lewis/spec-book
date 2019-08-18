@@ -8,6 +8,7 @@ const SpecInput = ({ value, onChange }) => {
     marginLeft: 50,
     height: 30,
     width: '60%',
+    outline: 'none',
   };
 
   return <input type="text" value={value} style={style} onChange={e => onChange(e.target.value)}/>;

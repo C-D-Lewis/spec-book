@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppContainer from './components/AppContainer.jsx';
-import PageContainer from './components/PageContainer.jsx';
+import FlexContainer from './components/FlexContainer.jsx';
 import { NavBar, NavBarSpacer } from './components/NavBar.jsx';
 import SectionMenu from './components/SectionMenu.jsx';
 import SpecInput from './components/SpecInput.jsx';
 import Theme from './theme';
+import Util from './util';
 
 /**
  * Top level application component.
@@ -35,21 +35,7 @@ class Application extends React.Component {
     const res = await fetch(specUrl);
     const text = await res.text();
     const spec = YAML.parse(text);
-
-    // Generate sections data containing requests
-    const sections = [];
-    Object.entries(spec.paths).forEach(([path, pathObj]) => {
-      Object.entries(pathObj).forEach(([method, operation]) => {
-        let foundSection = sections.find(p => p.name === operation.tags[0]);
-        if (!foundSection) {
-          foundSection = { name: operation.tags[0], operations: [] };
-          sections.push(foundSection);
-        }
-
-        const newOperation = Object.assign({}, operation, { path, method });
-        foundSection.operations.push(newOperation);
-      });
-    });
+    const sections = Util.extractSections(spec);
 
     this.setState({ specUrl, spec, sections });
   }
@@ -68,15 +54,19 @@ class Application extends React.Component {
    */
   render() {
     return (
-      <AppContainer>
+      <FlexContainer restyle={{
+        flexDirection: 'column',
+        height: '100vh',
+        backgroundColor: Theme.backgroundColor,
+      }}>
         <NavBar>
           <SpecInput value={this.state.specUrl} onChange={this.loadSpecFile}/>
         </NavBar>
         <NavBarSpacer/>
-        <PageContainer>
+        <FlexContainer restyle={{ height: '100vh' }}>
           <SectionMenu sections={this.state.sections}/>
-        </PageContainer>
-      </AppContainer>
+        </FlexContainer>
+      </FlexContainer>
     );
   }
 }
