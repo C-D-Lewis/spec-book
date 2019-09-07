@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import FlexContainer from './components/FlexContainer.jsx';
 import { NavBar, NavBarSpacer } from './components/NavBar.jsx';
+import OperationList from './components/OperationList.jsx';
 import SectionMenu from './components/SectionMenu.jsx';
 import SpecInput from './components/SpecInput.jsx';
 import Theme from './theme';
@@ -21,8 +22,10 @@ class Application extends React.Component {
       specUrl: `${window.location.href}example/petstore.yaml`,
       spec: null,
       sections: [],
+      currentSection: null,
     };
 
+    this.setState = this.setState.bind(this);
     this.loadSpecFile = this.loadSpecFile.bind(this);
   }
 
@@ -36,8 +39,9 @@ class Application extends React.Component {
     const text = await res.text();
     const spec = YAML.parse(text);
     const sections = Util.extractSections(spec);
+    const [currentSection] = sections;
 
-    this.setState({ specUrl, spec, sections });
+    this.setState({ specUrl, spec, sections, currentSection });
   }
 
   /**
@@ -62,9 +66,9 @@ class Application extends React.Component {
         <NavBar>
           <SpecInput value={this.state.specUrl} onChange={this.loadSpecFile}/>
         </NavBar>
-        <NavBarSpacer/>
-        <FlexContainer restyle={{ height: '100vh' }}>
-          <SectionMenu sections={this.state.sections}/>
+        <FlexContainer restyle={{ paddingTop: 10 }}>
+          <SectionMenu appState={this.state} setAppState={this.setState}/>
+          {this.state.currentSection && <OperationList appState={this.state}/>}
         </FlexContainer>
       </FlexContainer>
     );

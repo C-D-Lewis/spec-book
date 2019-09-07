@@ -6,7 +6,6 @@ export const NAVBAR_HEIGHT = 60;
 
 export const NavBar = ({ children }) => {
   const style = {
-    position: 'fixed',
     display: 'flex',
     flexDirection: 'row',
     width: '100%',
