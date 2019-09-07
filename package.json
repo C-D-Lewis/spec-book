@@ -1,5 +1,5 @@
 {
-  "name": "lunettes",
+  "name": "spec-book",
   "version": "1.0.0",
   "description": "Minimalistic OpenAPI spec viewer.",
   "main": "src/index.js",
