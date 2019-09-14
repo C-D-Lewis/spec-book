@@ -35,13 +35,23 @@ class Application extends React.Component {
    * @param {string} specUrl - URL to the spec file.
    */
   async loadSpecFile(specUrl) {
-    const res = await fetch(specUrl);
-    const text = await res.text();
-    const spec = YAML.parse(text);
-    const categories = Util.extractCategories(spec);
-    const [currentCategory] = categories;
+    try {
+      const res = await fetch(specUrl);
+      const text = await res.text();
+      const spec = YAML.parse(text);
+      const categories = Util.extractCategories(spec);
+      const [currentCategory] = categories;
 
-    this.setState({ specUrl, spec, categories, currentCategory });
+      this.setState({ specUrl, spec, categories, currentCategory });
+    } catch (e) {
+      // Probably incomplete or incorrect URL
+      this.setState({
+        specUrl,
+        spec: null,
+        categories: [],
+        currentCategory: null,
+      });
+    }
   }
 
   /**

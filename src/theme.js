@@ -9,6 +9,7 @@ const Theme = {
   },
   operationList: {
     backgroundColor: 'white',
+    summaryColor: 'black',
     methodColor: '#999',
     pathColor: '#222',
   }

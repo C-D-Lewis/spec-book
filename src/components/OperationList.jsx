@@ -4,11 +4,22 @@ import FlexContainer from './FlexContainer.jsx';
 import { NAVBAR_HEIGHT, NavBarSpacer } from './NavBar.jsx';
 import Theme from '../theme';
 
+const SummaryView = ({ children }) => {
+  const style = {
+    color: Theme.operationList.summaryColor,
+    fontFamily: 'Montserrat',
+    fontSize: '1.3rem',
+    fontStyle: 'italic',
+  };
+
+  return <div style={style}>{children}</div>;
+};
+
 const MethodView = ({ children }) => {
   const style = {
-    fontSize: '1.5rem',
     color: Theme.operationList.methodColor,
     marginRight: 10,
+    fontSize: '1.5rem',
     fontFamily: 'Montserrat',
     fontWeight: 'bold',
   };
@@ -18,9 +29,9 @@ const MethodView = ({ children }) => {
 
 const PathView = ({ children }) => {
   const style = {
-    fontSize: '1.5rem',
     color: Theme.operationList.pathColor,
     fontFamily: 'Ubuntu Mono',
+    fontSize: '1.5rem',
   };
 
   return <div style={style}>{children}</div>;
@@ -33,11 +44,14 @@ const OperationListItem = (operation, appState) => {
       flexDirection: 'column',
       marginBottom: 40,
     }}>
-      <FlexContainer>
+      <SummaryView>{operation.summary}</SummaryView>
+      <FlexContainer restyle={{ padding: '5px 0px' }}>
         <MethodView>{operation.method}</MethodView>
         <PathView>{operation.path}</PathView>
       </FlexContainer>
-      {JSON.stringify(operation)}
+      <div style={{ color: '#ddd' }}>
+        {JSON.stringify(operation)}
+      </div>
     </FlexContainer>
   );
 };
