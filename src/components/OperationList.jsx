@@ -7,9 +7,10 @@ import Theme from '../theme';
 const MethodView = ({ children }) => {
   const style = {
     fontSize: '1.5rem',
-    color: '#999',
+    color: Theme.operationList.methodColor,
     marginRight: 10,
     fontFamily: 'Montserrat',
+    fontWeight: 'bold',
   };
 
   return <div style={style}>{children.toUpperCase()}</div>;
@@ -18,7 +19,7 @@ const MethodView = ({ children }) => {
 const PathView = ({ children }) => {
   const style = {
     fontSize: '1.5rem',
-    color: '#222',
+    color: Theme.operationList.pathColor,
     fontFamily: 'Ubuntu Mono',
   };
 
@@ -42,13 +43,14 @@ const OperationListItem = (operation, appState) => {
 };
 
 const OperationList = ({ children, appState }) => {
-  const { operations } = appState.currentSection;
+  const { operations } = appState.currentCategory;
   const style = {
     flexDirection: 'column',
     minWidth: 200,
     height: '100%',
-    backgroundColor: Theme.navbarBackgroundColor,
+    backgroundColor: Theme.operationList.backgroundColor,
     marginLeft: 15,
+    paddingTop: 10,
   };
 
   return (

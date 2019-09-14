@@ -6,39 +6,39 @@ import Theme from '../theme';
 
 const cap = s => `${s.charAt(0).toUpperCase()}${s.slice(1)}`;
 
-const SectionItem = (section, appState, setAppState) => {
-  const isSelected = appState.currentSection.name === section.name;
+const CategoryItem = (category, appState, setAppState) => {
+  const isSelected = appState.currentCategory.name === category.name;
   const style = {
     padding: 15,
     paddingLeft: 10,
     fontSize: '1.2rem',
     fontWeight: isSelected ? 'bold' : 'initial',
-    backgroundColor: isSelected ? 'white' : '#eee',
+    backgroundColor: isSelected ? 'white' : Theme.categoryList.backgroundColor,
     cursor: 'pointer',
   };
 
   return (
-    <div key={section.name} style={style}onClick={() => setAppState({ currentSection: section })}>
-      {cap(section.name)}
+    <div key={category.name} style={style} onClick={() => setAppState({ currentCategory: category })}>
+      {cap(category.name)}
     </div>
   );
 };
 
-const SectionMenu = ({ children, appState, setAppState }) => {
+const CategoryList = ({ children, appState, setAppState }) => {
   const style = {
     flexDirection: 'column',
     minWidth: 200,
     height: '100%',
-    backgroundColor: Theme.navbarBackgroundColor,
+    backgroundColor: Theme.categoryList.backgroundColor,
   };
 
   return (
     <Fader>
       <FlexContainer restyle={style}>
-        {appState.sections.map(p => SectionItem(p, appState, setAppState))}
+        {appState.categories.map(p => CategoryItem(p, appState, setAppState))}
       </FlexContainer>
     </Fader>
   );
 };
 
-export default SectionMenu;
+export default CategoryList;

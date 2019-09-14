@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import FlexContainer from './components/FlexContainer.jsx';
 import { NavBar, NavBarSpacer } from './components/NavBar.jsx';
 import OperationList from './components/OperationList.jsx';
-import SectionMenu from './components/SectionMenu.jsx';
+import CategoryLIst from './components/CategoryLIst.jsx';
 import SpecInput from './components/SpecInput.jsx';
 import Theme from './theme';
 import Util from './util';
@@ -21,8 +21,8 @@ class Application extends React.Component {
     this.state = {
       specUrl: `${window.location.href}example/petstore.yaml`,
       spec: null,
-      sections: [],
-      currentSection: null,
+      categories: [],
+      currentCategory: null,
     };
 
     this.setState = this.setState.bind(this);
@@ -38,10 +38,10 @@ class Application extends React.Component {
     const res = await fetch(specUrl);
     const text = await res.text();
     const spec = YAML.parse(text);
-    const sections = Util.extractSections(spec);
-    const [currentSection] = sections;
+    const categories = Util.extractCategories(spec);
+    const [currentCategory] = categories;
 
-    this.setState({ specUrl, spec, sections, currentSection });
+    this.setState({ specUrl, spec, categories, currentCategory });
   }
 
   /**
@@ -66,9 +66,9 @@ class Application extends React.Component {
         <NavBar>
           <SpecInput value={this.state.specUrl} onChange={this.loadSpecFile}/>
         </NavBar>
-        <FlexContainer restyle={{ paddingTop: 10 }}>
-          <SectionMenu appState={this.state} setAppState={this.setState}/>
-          {this.state.currentSection && <OperationList appState={this.state}/>}
+        <FlexContainer restyle={{ height: '100vh' }}>
+          <CategoryLIst appState={this.state} setAppState={this.setState}/>
+          {this.state.currentCategory && <OperationList appState={this.state}/>}
         </FlexContainer>
       </FlexContainer>
     );

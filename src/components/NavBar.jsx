@@ -11,8 +11,9 @@ export const NavBar = ({ children }) => {
     width: '100%',
     alignItems: 'center',
     height: NAVBAR_HEIGHT,
-    boxShadow: '0px 2px 7px -2px black',
-    backgroundColor: Theme.navbarBackgroundColor,
+    // boxShadow: '0px 2px 7px -2px black',
+    borderBottom: `solid 1px ${Theme.separatorColor}`,
+    backgroundColor: Theme.navbar.backgroundColor,
     zIndex: 999,
   };
 

@@ -2,12 +2,12 @@ import React from 'react';
 
 const SpecInput = ({ value, onChange }) => {
   const style = {
-    fontSize: '1.5rem',
+    fontSize: '1.4rem',
     border: 'none',
     borderBottom: '1px solid darkgrey',
-    marginLeft: 50,
+    marginLeft: 10,
     height: 30,
-    width: '60%',
+    width: '70%',
     outline: 'none',
   };
 
