@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import FlexContainer from './components/FlexContainer.jsx';
 import { NavBar, NavBarSpacer } from './components/NavBar.jsx';
 import OperationList from './components/OperationList.jsx';
-import CategoryLIst from './components/CategoryLIst.jsx';
+import CategoryList from './components/CategoryList.jsx';
 import SpecInput from './components/SpecInput.jsx';
 import Theme from './theme';
 import Util from './util';
@@ -77,7 +77,7 @@ class Application extends React.Component {
           <SpecInput value={this.state.specUrl} onChange={this.loadSpecFile}/>
         </NavBar>
         <FlexContainer restyle={{ height: '100vh' }}>
-          <CategoryLIst appState={this.state} setAppState={this.setState}/>
+          <CategoryList appState={this.state} setAppState={this.setState}/>
           {this.state.currentCategory && <OperationList appState={this.state}/>}
         </FlexContainer>
       </FlexContainer>
